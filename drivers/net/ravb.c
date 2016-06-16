@@ -389,10 +389,6 @@ static int ravb_dmac_init(struct udevice *dev)
 	/* FIFO size set */
 	writel(0x00222210, eth->iobase + RAVB_REG_TGC);
 
-	/* Delay CLK: 2ns */
-	if (pdata->max_speed == 1000)
-		writel(BIT(14), eth->iobase + RAVB_REG_APSR);
-
 	return 0;
 }
 
