@@ -46,3 +46,7 @@
 	max-frequency = <208000000>;
 	status = "okay";
 };
+
+&rpc {
+	status = "okay";
+};

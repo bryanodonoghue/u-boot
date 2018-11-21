@@ -43,3 +43,7 @@
 	sd-uhs-sdr104;
 	max-frequency = <208000000>;
 };
+
+&rpc {
+	status = "okay";
+};
