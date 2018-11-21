@@ -43,3 +43,7 @@
 	mmc-hs400-1_8v;
 	max-frequency = <200000000>;
 };
+
+&rpc {
+	status = "okay";
+};
