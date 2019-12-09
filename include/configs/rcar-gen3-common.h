@@ -58,6 +58,9 @@
 #define CONFIG_ENV_SIZE		(CONFIG_ENV_SECT_SIZE)
 #define CONFIG_ENV_SIZE_REDUND	(CONFIG_ENV_SIZE)
 
+#define CONFIG_SYS_MEMTEST_START 0x51000000
+#define CONFIG_SYS_MEMTEST_END 0x52000000
+
 #define CONFIG_EXTRA_ENV_SETTINGS	\
 	"usb_pgood_delay=2000\0"	\
 	"fdt_high=0xffffffffffffffff\0"	\
