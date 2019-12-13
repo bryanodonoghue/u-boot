@@ -1,0 +1,15 @@
+if TARGET_ADAS
+
+config SYS_SOC
+	default "rmobile"
+
+config SYS_BOARD
+	default "adas"
+
+config SYS_VENDOR
+	default "avl"
+
+config SYS_CONFIG_NAME
+	default "adas"
+
+endif

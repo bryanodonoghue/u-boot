@@ -1,0 +1,51 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * AVL u-boot 4x2g extender based on Renesas original
+ *
+ * Copyright (C) 2018-2019 Renesas Electronics Corporation.
+ * Copyright (C) 2020 AVL
+ */
+
+#include "r8a7795-avl-adas-4x2g.dts"
+#include "r8a7795-u-boot.dtsi"
+
+/ {
+	/* TODO: verify if a CPLD is present on this board */
+	cpld {
+		compatible = "renesas,ulcb-cpld";
+		status = "okay";
+		gpio-sck = <&gpio6 8 0>;
+		gpio-mosi = <&gpio6 7 0>;
+		gpio-miso = <&gpio6 10 0>;
+		gpio-sstbz = <&gpio2 3 0>;
+	};
+};
+
+&vcc_sdhi0 {
+	u-boot,off-on-delay-us = <20000>;
+};
+
+&sdhi2_pins {
+	groups = "sdhi2_data8", "sdhi2_ctrl", "sdhi2_ds";
+	power-source = <1800>;
+};
+
+&sdhi2_pins_uhs {
+	groups = "sdhi2_data8", "sdhi2_ctrl", "sdhi2_ds";
+};
+
+&sdhi0 {
+	sd-uhs-sdr12;
+	sd-uhs-sdr25;
+	sd-uhs-sdr104;
+	max-frequency = <208000000>;
+};
+
+&sdhi2 {
+	mmc-hs400-1_8v;
+	max-frequency = <200000000>;
+};
+
+&rpc {
+	status = "okay";
+};
