@@ -55,6 +55,39 @@ int board_early_init_f(void)
 #define HSUSB_REG_UGCTRL2_USB0SEL	0x30
 #define HSUSB_REG_UGCTRL2_USB0SEL_EHCI	0x10
 
+/* Take PHY out of reset */
+int usb_eth_phy_unreset(void)
+{
+	struct udevice *ehci;
+	struct gpio_desc resin;
+	int node, ret;
+
+	ret = uclass_get_device_by_name(UCLASS_GPIO, "usb@ee0a0100", &ehci);
+	if (ret < 0) {
+		printf("Failed to find ehci1 node. Check device tree\n");
+		return 0;
+	}
+
+	node = fdt_subnode_offset(gd->fdt_blob, dev_of_offset(ehci),
+				  "gpio-eth-reset");
+	if (node < 0) {
+		printf("Failed to find gpio-eth-reset node. Check device tree\n");
+		return 0;
+	}
+
+	if (gpio_request_by_name_nodev(offset_to_ofnode(node), "gpio-eth-reset", 0,
+				       &resin, 0)) {
+		printf("Failed to request gpio-eth-reset.\n");
+		return 0;
+	}
+
+	ret = dm_gpio_set_value(&resin, 1);
+	if (ret)
+		fprintf(stderr, "Unable to set GPIO ret=%d\n", ret);
+
+	return ret;
+}
+
 int board_init(void)
 {
 	/* adress of boot parameters */
@@ -70,6 +103,8 @@ int board_init(void)
 			HSUSB_REG_UGCTRL2_USB0SEL_EHCI);
 	/* low power status */
 	setbits_le16(HSUSB_REG_LPSTS, HSUSB_REG_LPSTS_SUSPM_NORMAL);
+
+	usb_eth_phy_unreset();
 
 	return 0;
 }
