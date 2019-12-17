@@ -167,6 +167,7 @@
 };
 
 &ehci1 {
+	gpio = <&gpio6 26 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
 
