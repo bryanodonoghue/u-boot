@@ -381,6 +381,11 @@
 		groups = "usb2";
 		function = "usb2";
 	};
+
+	usb30_pins: usb30 {
+		groups = "usb30";
+		function = "usb30";
+	};
 };
 
 &rcar_sound {
@@ -486,7 +491,30 @@
 	status = "okay";
 };
 
+&usb3_peri0 {
+	phys = <&usb3_phy0>;
+	phy-names = "usb";
+
+	status = "okay";
+};
+
+&usb3_phy0 {
+	status = "okay";
+};
+
+&usb3s0_clk {
+	clock-frequency = <100000000>;
+};
+
 &rwdt {
 	timeout-sec = <60>;
+	status = "okay";
+};
+
+&xhci0 {
+	pinctrl-0 = <&usb30_pins>;
+	pinctrl-names = "default";
+	gpio = <&gpio6 28 GPIO_ACTIVE_HIGH>;
+
 	status = "okay";
 };
