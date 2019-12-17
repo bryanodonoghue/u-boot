@@ -24,13 +24,13 @@
 	u-boot,off-on-delay-us = <20000>;
 };
 
-&sdhi2_pins {
-	groups = "sdhi2_data8", "sdhi2_ctrl", "sdhi2_ds";
+&sdhi3_pins {
+	groups = "sdhi3_data8", "sdhi3_ctrl", "sdhi3_ds";
 	power-source = <1800>;
 };
 
-&sdhi2_pins_uhs {
-	groups = "sdhi2_data8", "sdhi2_ctrl", "sdhi2_ds";
+&sdhi3_pins_uhs {
+	groups = "sdhi3_data8", "sdhi3_ctrl", "sdhi3_ds";
 };
 
 &sdhi0 {
@@ -40,7 +40,7 @@
 	max-frequency = <208000000>;
 };
 
-&sdhi2 {
+&sdhi3 {
 	mmc-hs400-1_8v;
 	max-frequency = <200000000>;
 };
