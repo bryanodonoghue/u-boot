@@ -162,6 +162,7 @@
 
 &ehci0 {
 	dr_mode = "host";
+	gpio = <&gpio6 24 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
 
