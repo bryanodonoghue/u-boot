@@ -167,12 +167,14 @@
 };
 
 &ehci1 {
+	dr_mode = "host";
 	gpio-eth-reset = <&gpio4 00 GPIO_ACTIVE_HIGH>;
 	gpio = <&gpio6 26 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
 
 &ehci2 {
+	dr_mode = "host";
 	gpio-pwren = <&gpio6 28 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
