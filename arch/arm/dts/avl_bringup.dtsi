@@ -519,6 +519,4 @@
 	pinctrl-0 = <&usb30_pins>;
 	pinctrl-names = "default";
 	gpio-pwren = <&gpio6 28 GPIO_ACTIVE_HIGH>;
-
-	status = "okay";
 };
