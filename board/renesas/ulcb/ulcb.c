@@ -69,7 +69,7 @@ int usb_eth_phy_unreset(void)
 	}
 
 	node = fdt_subnode_offset(gd->fdt_blob, dev_of_offset(ehci),
-				  "gpio-eth-reset");
+				  "reset_block");
 	if (node < 0) {
 		printf("Failed to find gpio-eth-reset node. Check device tree\n");
 		return 0;
