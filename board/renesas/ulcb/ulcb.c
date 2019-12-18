@@ -121,6 +121,39 @@ int usb_xhci_pwren(void)
 
 }
 
+int usb_ehci2_pwren(void)
+{
+	struct udevice *ehci2;
+	struct gpio_desc pwren;
+	int node, ret;
+
+	ret = uclass_get_device_by_name(UCLASS_USB, "usb@ee0c0100", &ehci2);
+	if (ret < 0) {
+		printf("Failed to find ehci2 node. Check device tree\n");
+		return 0;
+	}
+
+	node = fdt_subnode_offset(gd->fdt_blob, dev_of_offset(ehci2),
+				  "gpio-pwren");
+	if (node < 0) {
+		printf("Failed to find gpio-pwren node. Check device tree\n");
+		return 0;
+	}
+
+	if (gpio_request_by_name_nodev(offset_to_ofnode(node), "gpio-pwren", 0,
+				       &pwren, 0)) {
+		printf("Failed to request gpio-pwren.\n");
+		return 0;
+	}
+
+	ret = dm_gpio_set_value(&pwren, 1);
+	if (ret)
+		fprintf(stderr, "Unable to set PWREN ret=%d\n", ret);
+
+	return ret;
+
+}
+
 int board_init(void)
 {
 	/* adress of boot parameters */
@@ -139,6 +172,7 @@ int board_init(void)
 
 	usb_eth_phy_unreset();
 	usb_xhci_pwren();
+	usb_ehci2_pwren();
 
 	return 0;
 }
