@@ -173,7 +173,7 @@
 };
 
 &ehci2 {
-	gpio = <&gpio6 28 GPIO_ACTIVE_HIGH>;
+	gpio-pwren = <&gpio6 28 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
 
