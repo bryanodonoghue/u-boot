@@ -62,7 +62,7 @@ int usb_eth_phy_unreset(void)
 	struct gpio_desc resin;
 	int node, ret;
 
-	ret = uclass_get_device_by_name(UCLASS_GPIO, "usb@ee0a0100", &ehci);
+	ret = uclass_get_device_by_name(UCLASS_USB, "usb@ee0a0100", &ehci);
 	if (ret < 0) {
 		printf("Failed to find ehci1 node. Check device tree\n");
 		return 0;
@@ -94,7 +94,7 @@ int usb_xhci_pwren(void)
 	struct gpio_desc pwren;
 	int node, ret;
 
-	ret = uclass_get_device_by_name(UCLASS_GPIO, "usb@ee000000", &xhci);
+	ret = uclass_get_device_by_name(UCLASS_USB, "usb@ee000000", &xhci);
 	if (ret < 0) {
 		printf("Failed to find xhci0 node. Check device tree\n");
 		return 0;
