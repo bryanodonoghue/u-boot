@@ -138,6 +138,7 @@ int board_init(void)
 	setbits_le16(HSUSB_REG_LPSTS, HSUSB_REG_LPSTS_SUSPM_NORMAL);
 
 	usb_eth_phy_unreset();
+	usb_xhci_pwren();
 
 	return 0;
 }
