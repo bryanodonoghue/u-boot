@@ -169,11 +169,11 @@ int board_init(void)
 			HSUSB_REG_UGCTRL2_USB0SEL_EHCI);
 	/* low power status */
 	setbits_le16(HSUSB_REG_LPSTS, HSUSB_REG_LPSTS_SUSPM_NORMAL);
-
+#if 0
 	usb_eth_phy_unreset();
 	usb_xhci_pwren();
 	usb_ehci2_pwren();
-
+#endif
 	return 0;
 }
 
