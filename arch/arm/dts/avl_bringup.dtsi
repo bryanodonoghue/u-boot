@@ -167,8 +167,10 @@
 
 &ehci1 {
 	dr_mode = "host";
-	gpio-eth-reset = <&gpio4 00 GPIO_ACTIVE_HIGH>;
 	status = "okay";
+	reset_block {
+		gpio-eth-reset = <&gpio4 00 GPIO_ACTIVE_HIGH>;
+	};
 };
 
 &extal_clk {
