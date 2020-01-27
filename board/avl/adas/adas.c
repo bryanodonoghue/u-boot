@@ -55,6 +55,32 @@ int board_early_init_f(void)
 #define HSUSB_REG_UGCTRL2_USB0SEL	0x30
 #define HSUSB_REG_UGCTRL2_USB0SEL_EHCI	0x10
 
+void lanbridge_init(void)
+{
+	int err;
+
+	err = gpio_request(135,"lan_phy_reset");
+	if (err<0) {
+		printk("error pin on usb_phy");
+	} else {
+		gpio_direction_output(135, 1);
+	}
+
+	err = gpio_request(76,"lan_phy_enable");
+	if (err<0) {
+		printk("error pin on usb_phy");
+	} else {
+		gpio_direction_output(76, 1);
+	}
+
+	err = gpio_request(77,"lan_phy_wake");
+	if (err<0) {
+		printk("error pin on usb_phy");
+	} else{
+		gpio_direction_output(77, 1);
+	}
+}
+
 int board_init(void)
 {
 	/* adress of boot parameters */
@@ -70,6 +96,9 @@ int board_init(void)
 			HSUSB_REG_UGCTRL2_USB0SEL_EHCI);
 	/* low power status */
 	setbits_le16(HSUSB_REG_LPSTS, HSUSB_REG_LPSTS_SUSPM_NORMAL);
+
+	/* Init LAN bridge */
+	lanbridge_init();
 
 	return 0;
 }
