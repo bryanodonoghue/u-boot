@@ -535,5 +535,5 @@
 	pinctrl-0 = <&usb30_pins>;
 	pinctrl-names = "default";
 
-	status = "okay";
+	status = "disabled";
 };
