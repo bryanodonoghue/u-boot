@@ -37,6 +37,7 @@
 	};
 };
 
+/*
 &du {
 	clocks = <&cpg CPG_MOD 724>,
 		 <&cpg CPG_MOD 723>,
@@ -50,3 +51,4 @@
 	clock-names = "du.0", "du.1", "du.2", "du.3", "lvds.0",
 		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
 };
+*/
